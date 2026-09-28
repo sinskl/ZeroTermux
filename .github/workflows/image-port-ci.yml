@@ -1,0 +1,24 @@
+name: Image Port Validation
+
+on:
+  push:
+    branches:
+      - termux-image-support
+    paths:
+      - 'terminal-emulator/**'
+      - 'terminal-view/**'
+      - '.github/workflows/image-port-ci.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Compile terminal modules
+        run: |
+          chmod +x gradlew
+          ./gradlew :terminal-view:assembleDebug --stacktrace
