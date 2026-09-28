@@ -279,12 +279,8 @@ public final class TerminalRenderer {
             }
 			// @}
 
-            // The text alignment is the default Paint.Align.LEFT.
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                canvas.drawTextRun(text, startCharIndex, runWidthChars, startCharIndex, runWidthChars, left, y - mFontLineSpacingAndAscent, false, mTextPaint);
-            } else {
-                canvas.drawText(text, startCharIndex, runWidthChars, left, y - mFontLineSpacingAndAscent, mTextPaint);
-            }
+            // Keep ZeroTermux's existing text drawing path; bitmap cells are handled separately above.
+            canvas.drawText(text, startCharIndex, runWidthChars, left, y - mFontLineSpacingAndAscent, mTextPaint);
             // ZeroTermux add {@
             mTextPaint.setShadowLayer(0, 0, 0, 0);
 			// @}
